@@ -8,6 +8,9 @@ class Searchbar extends Component {
    <form className={css.form}>
      <button type="submit" class="button">
        <span className={css.buttonLabel}></span>
+       <svg width='24' height='24'>
+        <use href='/src/images/search.svg#search'></use>
+       </svg>
      </button>
   
      <input
