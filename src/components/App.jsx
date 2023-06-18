@@ -1,7 +1,14 @@
 import Searchbar from "./Searchbar/Searchbar";
 import ImageGallery from "./ImageGallery/ImageGallery";
+import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
+import { Component } from "react";
 
-export const App = () => {
+class App extends Component {
+  state = {
+    images:[]
+  };
+  
+  render(){
   return (
     <div
       style={{
@@ -15,7 +22,14 @@ export const App = () => {
       }}
     >
       <Searchbar/>
-      <ImageGallery/>
+      <ImageGallery>
+        <ImageGalleryItem/>
+      </ImageGallery>
+
+      
     </div>
   );
 };
+}
+
+export default App;
