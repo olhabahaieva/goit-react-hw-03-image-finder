@@ -3,12 +3,11 @@ import css from './Searchbar.module.css';
 import axios from 'axios';
 
 class Searchbar extends Component {
-  formRef = React.createRef(); // Создаем ref для доступа к форме
-
+  
   onSubmit = async (e) => {
     e.preventDefault();
-    const form = this.formRef.current; // Получаем доступ к форме через ref
-    const input = form.search.value; // Получаем значение поля ввода из формы
+    const form = e.target;
+    const input = form.search.value;
 
     async function getImages(images, page = 1) {
       const BASE_URL = 'https://pixabay.com/api/';
@@ -24,14 +23,18 @@ class Searchbar extends Component {
       }
     }
 
-    getImages(input); // Выполняем запрос к API передавая значение поля ввода
+    getImages(input);
   };
 
   render() {
     return (
       <>
         <header className={css.searchbar}>
-          <form ref={this.formRef} className={css.form} onSubmit={this.onSubmit}>
+          <form
+            ref={this.formRef}
+            className={css.form}
+            onSubmit={this.onSubmit}
+          >
             <button type="submit" className={css.button}>
               <span className={css.buttonLabel}></span>
               <svg width="24" height="24">
