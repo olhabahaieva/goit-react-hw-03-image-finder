@@ -1,3 +1,5 @@
+import Searchbar from "./Searchbar/Searchbar";
+
 export const App = () => {
   return (
     <div
@@ -5,12 +7,12 @@ export const App = () => {
         height: '100vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'center',
         fontSize: 40,
         color: '#010101'
       }}
     >
-      React homework template
+      <Searchbar/>
     </div>
   );
 };
