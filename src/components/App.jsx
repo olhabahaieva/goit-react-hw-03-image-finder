@@ -1,10 +1,16 @@
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import { Component } from 'react';
+import getImages from '../getImages';
 
 class App extends Component {
   state = {
     images: [],
+  };
+
+  handleSearch = async (searchQuery) => {
+    const images = await getImages(searchQuery);
+    this.setState({ images });
   };
 
   render() {
@@ -20,8 +26,8 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Searchbar />
-        <ImageGallery />
+        <Searchbar onSearch={this.handleSearch}/>
+        <ImageGallery images={this.state.images}/>
       </div>
     );
   }
