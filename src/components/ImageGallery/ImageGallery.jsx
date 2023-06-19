@@ -3,11 +3,12 @@ import css from './ImageGallery.module.css';
 import ImageGalleryItem from 'components/ImageGalleryItem';
 
 class ImageGallery extends Component {
+
   render() {
-    const { images } = this.props;
+    // const { images } = this.props;
     return (
       <ul className={css.gallery}>
-        <ImageGalleryItem images={images} />
+        <ImageGalleryItem images={this.props.images} />
       </ul>
     );
   }

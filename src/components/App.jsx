@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 
+
 class App extends Component {
+
   state = {
     images: [],
     page: 1,
@@ -21,9 +23,11 @@ class App extends Component {
       >
         <Searchbar/>
         <ImageGallery images={this.state.images} />
+    
       </div>
     );
   }
+  
 }
 
 export default App;
