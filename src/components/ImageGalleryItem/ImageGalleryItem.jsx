@@ -4,14 +4,17 @@ import css from './ImageGalleryItem.module.css';
 class ImageGalleryItem extends Component {
   render() {
     const { images } = this.props;
-    // console.log(images);
+
     return (
       <li className={css.galleryItem}>
-        <img
-          className={css.galleryItemImage}
-          src={this.url}
-          alt="images"
-        />
+        {images.map(image => (
+          <img
+            key={image.id}
+            className={css.galleryItemImage}
+            src={image.pageUrl}
+            alt={image.tags}
+          />
+        ))}
       </li>
     );
   }
