@@ -9,7 +9,7 @@ class ImageGalleryItem extends Component {
       <li className={css.galleryItem}>
         <img
           className={css.galleryItemImage}
-          src={images.url}
+          src={this.url}
           alt="images"
         />
       </li>

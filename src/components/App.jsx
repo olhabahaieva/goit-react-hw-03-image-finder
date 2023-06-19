@@ -1,17 +1,43 @@
+import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import { Component } from 'react';
 import getImages from '../getImages';
 
 class App extends Component {
   state = {
     images: [],
+    page: 1,
   };
 
-  handleSearch = async (searchQuery) => {
-    const images = await getImages(searchQuery);
-    this.setState({ images });
+  fetchImages = () => {
+    const { images, page } = this.state;
+
+    getImages(images, page)
+      .then((img) => console.log(img)
+      // {
+        // const data = hits.map(({ id, webformatURL, largeImageURL, tags }) => {
+        //   return {
+        //     id,
+        //     webformatURL,
+        //     largeImageURL,
+        //     tags,
+        //   };
+        // });
+        // this.setState(({ images }) => ({
+        //   images: [...images, ...data],
+        //   // page: page + 1,
+        // }));
+      // }
+      )
+      .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoading: false }));
   };
+
+  // handleSearch = async (searchQuery) => {
+  //   const images = await getImages(searchQuery);
+  //   console.log(images)
+  //   this.setState({ images });
+  // };
 
   render() {
     return (
@@ -20,14 +46,13 @@ class App extends Component {
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          // justifyContent: 'center',
-          // alignItems: 'center',
           fontSize: 40,
           color: '#010101',
         }}
       >
-        <Searchbar onSearch={this.handleSearch}/>
-        <ImageGallery images={this.state.images}/>
+        <Searchbar onSearch={this.handleSearch} />
+        <ImageGallery images={this.state.images} />
+        
       </div>
     );
   }
