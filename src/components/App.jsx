@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import getImages from 'getImages';
 
 class App extends Component {
   state = {
     images: [],
     page: 1,
   };
-
-  onSubmit() {
-    getImages();
-  }
 
   render() {
     return (
@@ -24,7 +19,7 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Searchbar onSubmit={this.onSubmit} />
+        <Searchbar/>
         <ImageGallery images={this.state.images} />
       </div>
     );
