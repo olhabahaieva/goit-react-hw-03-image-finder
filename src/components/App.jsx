@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import getImages from '../getImages';
+import getImages from 'getImages';
 
 class App extends Component {
   state = {
@@ -9,35 +9,9 @@ class App extends Component {
     page: 1,
   };
 
-  fetchImages = () => {
-    const { images, page } = this.state;
-
-    getImages(images, page)
-      .then((img) => console.log(img)
-      // {
-        // const data = hits.map(({ id, webformatURL, largeImageURL, tags }) => {
-        //   return {
-        //     id,
-        //     webformatURL,
-        //     largeImageURL,
-        //     tags,
-        //   };
-        // });
-        // this.setState(({ images }) => ({
-        //   images: [...images, ...data],
-        //   // page: page + 1,
-        // }));
-      // }
-      )
-      .catch(error => this.setState({ error }))
-      .finally(() => this.setState({ isLoading: false }));
-  };
-
-  // handleSearch = async (searchQuery) => {
-  //   const images = await getImages(searchQuery);
-  //   console.log(images)
-  //   this.setState({ images });
-  // };
+  onSubmit() {
+    getImages();
+  }
 
   render() {
     return (
@@ -50,9 +24,8 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Searchbar onSearch={this.handleSearch} />
+        <Searchbar onSubmit={this.onSubmit} />
         <ImageGallery images={this.state.images} />
-        
       </div>
     );
   }
