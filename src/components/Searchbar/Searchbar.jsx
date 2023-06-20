@@ -5,7 +5,7 @@ import { BsSearch } from "react-icons/bs";
 
 class Searchbar extends Component {
   
-  onSubmit = async (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const input = form.search.value;
@@ -20,7 +20,7 @@ class Searchbar extends Component {
           <form
             ref={this.formRef}
             className={css.form}
-            onSubmit={this.onSubmit}
+            onSubmit={this.handleSubmit}
           >
             <button type="submit" className={css.button}>
              <BsSearch size="18"/>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
+import getImages from 'getImages';
+
 
 class App extends Component {
   state = {
@@ -8,6 +10,12 @@ class App extends Component {
     page: 1,
   };
 
+  async onSubmit(){
+    await getImages()
+    this.setState = {
+      images: this.state.images
+    }
+  }
   //fetchRequest
   //setState
 
@@ -25,7 +33,7 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Searchbar />
+        <Searchbar onSubmit={this.onSubmit}/>
         <ImageGallery images={images} pages={pages}/>
       </div>
     );
