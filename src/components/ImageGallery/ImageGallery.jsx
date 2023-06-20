@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import css from './ImageGallery.module.css';
-import ImageGalleryItem from 'components/ImageGalleryItem';
+import ImageGalleryItem from '../ImageGalleryItem';
 
 class ImageGallery extends Component {
-
   render() {
-    // const { images } = this.props;
+    const { images } = this.props;
+    
     return (
       <ul className={css.gallery}>
-        <ImageGalleryItem images={this.props.images} />
+        <ImageGalleryItem images={images} />
       </ul>
     );
   }
