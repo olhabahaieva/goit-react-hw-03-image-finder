@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import css from './Searchbar.module.css';
 import getImages from 'getImages';
+import { BsSearch } from "react-icons/bs";
 
 class Searchbar extends Component {
   
@@ -22,10 +23,7 @@ class Searchbar extends Component {
             onSubmit={this.onSubmit}
           >
             <button type="submit" className={css.button}>
-              <span className={css.buttonLabel}></span>
-              <svg width="24" height="24">
-                <use href="/src/images/search.svg#search"></use>
-              </svg>
+             <BsSearch />
             </button>
 
             <input
