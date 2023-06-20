@@ -23,7 +23,7 @@ class Searchbar extends Component {
             onSubmit={this.onSubmit}
           >
             <button type="submit" className={css.button}>
-             <BsSearch />
+             <BsSearch size="18"/>
             </button>
 
             <input
