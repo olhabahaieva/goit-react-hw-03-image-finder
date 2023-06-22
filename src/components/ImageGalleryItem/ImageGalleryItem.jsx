@@ -1,18 +1,18 @@
 import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ images }) => {
-  console.log(images)
-  if (images.length > 0) {
+const ImageGalleryItem = ( {image} ) => {
+  console.log(image)
+  if (image.length > 0) {
     return (
       <li className={css.galleryItem}>
-        {images.map((image) => (
-          // console.log(image)
+        {image.map((el) => (
+          // console.log(el)
           <img
-            key={image.id}
+            key={el.id}
             className={css.galleryItemImage}
-            src={image.largeImageURL}
-            alt={image.tags}
+            src={el.largeImageURL}
+            alt={el.tags}
           />
         ))}
       </li>
