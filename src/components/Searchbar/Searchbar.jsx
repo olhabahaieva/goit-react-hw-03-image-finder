@@ -11,6 +11,9 @@ class Searchbar extends Component {
     const input = form.search.value;
 
     getImages(input);
+    this.setState = {
+      images: this.images,
+    }
   };
 
   render() {
