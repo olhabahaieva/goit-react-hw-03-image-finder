@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import getImages from 'getImages';
+import getImages from './api/getImages';
+
 
 class App extends Component {
   state = {
@@ -9,20 +10,13 @@ class App extends Component {
     page: 1,
   };
 
-  async onSubmit() {
-    await getImages();
-    this.setState(() => {
-      return {
-        images: this.state.images,
-      };
-    });
+  onSubmit = async () => { // Use an arrow function to automatically bind `this`
+    const data = await getImages();
+    // console.log(data);
+    this.setState({ images: data.hits });
   }
-  //fetchRequest
-  //setState
 
   render() {
-    
-
     return (
       <div
         style={{
@@ -33,8 +27,8 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Searchbar onSubmit={this.onSubmit} images={this.state.images} />
-        <ImageGallery images={this.state.images}/>
+        <Searchbar onSubmit={this.onSubmit} /> 
+        <ImageGallery images={this.state.images} /> 
       </div>
     );
   }

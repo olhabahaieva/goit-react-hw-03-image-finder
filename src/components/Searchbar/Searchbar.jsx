@@ -1,47 +1,33 @@
-import React, { Component } from 'react';
 import css from './Searchbar.module.css';
-import getImages from 'getImages';
-import { BsSearch } from "react-icons/bs";
+import { BsSearch } from 'react-icons/bs';
+import React, { useState } from 'react';
 
-class Searchbar extends Component {
-  
-  handleSubmit = async (e) => {
+const Searchbar = ({ onSubmit }) => {
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = e => {
     e.preventDefault();
-    const form = e.target;
-    const input = form.search.value;
-
-    getImages(input);
-    this.setState = {
-      images: this.images,
-    }
+    onSubmit();
   };
 
-  render() {
-    return (
-      <>
-        <header className={css.searchbar}>
-          <form
-            ref={this.formRef}
-            className={css.form}
-            onSubmit={this.handleSubmit}
-          >
-            <button type="submit" className={css.button}>
-             <BsSearch size="18"/>
-            </button>
-
-            <input
-              name="search"
-              className={css.input}
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-            />
-          </form>
-        </header>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <header className={css.searchbar}>
+        <form onSubmit={handleSubmit} className={css.form}>
+          <input
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search images..."
+            className={css.input}
+          />
+          <button className={css.button} type="submit">
+            <BsSearch size="18" />
+          </button>
+        </form>
+      </header>
+    </>
+  );
+};
 
 export default Searchbar;
