@@ -1,17 +1,24 @@
 import React from 'react';
 import css from './ImageGallery.module.css';
-import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ images }) => { // Destructure the props object to access images
-  // console.log(images)
-  if (images.length > 0) { // Check if images is an array and has elements
+const ImageGallery = ({ images }) => {
+  if (images.length > 0) {
     return (
-      <ul className={css.gallery}> {/* Wrap the list items in a ul element */}
-        <ImageGalleryItem images={images}/>
+      <ul className={css.gallery}>
+        {images.map(({ image }) => (
+          <li key={image.id} className={css.galleryItem}>
+            <img
+              className={css.galleryItemImage}
+              src={image.largeImageURL}
+              alt={image.tags}
+            />
+          </li>
+        ))}
       </ul>
     );
+  } else {
+    return null;
   }
-  // return null; 
 };
 
 export default ImageGallery;

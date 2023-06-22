@@ -20,6 +20,8 @@ class App extends Component {
   };
 
   render() {
+    const { images } = this.state; 
+
     return (
       <div
         style={{
@@ -31,7 +33,7 @@ class App extends Component {
         }}
       >
         <Searchbar onSubmit={this.onSubmit} /> 
-        <ImageGallery images={this.state.images} /> 
+        <ImageGallery images={images} /> 
       </div>
     );
   }
