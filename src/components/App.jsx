@@ -10,11 +10,14 @@ class App extends Component {
     page: 1,
   };
 
-  onSubmit = async () => { // Use an arrow function to automatically bind `this`
-    const data = await getImages();
-    // console.log(data);
-    this.setState({ images: data.hits });
-  }
+  onSubmit = async (query) => {
+    try {
+      const images = await getImages(query);
+      this.setState({ images });
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
 
   render() {
     return (

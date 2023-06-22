@@ -1,24 +1,27 @@
-import css from './Searchbar.module.css';
+import React, { Component } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import React, { useState } from 'react';
+import css from './Searchbar.module.css';
 
-const Searchbar = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
-
-  const handleSubmit = e => {
+class Searchbar extends Component {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit();
+    const form = e.target;
+    const input = form.search.value.trim();
+
+    if (input) {
+      this.props.onSubmit(input);
+      form.reset();
+    }
   };
 
-  return (
-    <>
+  render() {
+    return (
       <header className={css.searchbar}>
-        <form onSubmit={handleSubmit} className={css.form}>
+        <form onSubmit={this.handleSubmit} className={css.form}>
           <input
             type="text"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
             placeholder="Search images..."
+            name="search"
             className={css.input}
           />
           <button className={css.button} type="submit">
@@ -26,8 +29,8 @@ const Searchbar = ({ onSubmit }) => {
           </button>
         </form>
       </header>
-    </>
-  );
-};
+    );
+  }
+}
 
 export default Searchbar;
