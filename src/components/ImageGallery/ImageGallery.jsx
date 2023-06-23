@@ -5,8 +5,8 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 const ImageGallery = ({ images }) => {
   console.log(images.hits);
   if (images.hits) {
-    const elements = images.hits.map((el) => (
-      <ImageGalleryItem key={el.id} url={el.previewURL} image={el} />
+    const elements = images.hits.map(el => (
+      <ImageGalleryItem key={el.id} url={el.largeImageURL} tags={el.tags} image={el} />
     ));
 
     return <ul className={css.gallery}>{elements}</ul>;
