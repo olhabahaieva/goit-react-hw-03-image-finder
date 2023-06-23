@@ -12,7 +12,7 @@ const ImageGallery = ({ images }) => {
     return <ul className={css.gallery}>{elements}</ul>;
   }
 
-  return null; // Return null or a fallback component if `images.hits` is falsy
+  return null;
 };
 
 export default ImageGallery;
