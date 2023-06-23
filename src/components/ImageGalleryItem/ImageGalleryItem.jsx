@@ -1,25 +1,18 @@
 import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ( {image} ) => {
-  console.log(image)
-  if (image.length > 0) {
+const ImageGalleryItem = ( {key, largeImageURL, tags} ) => {
+  // console.log(image)
     return (
       <li className={css.galleryItem}>
-        {image.map((el) => (
-          // console.log(el)
           <img
-            key={el.id}
+            key={key}
             className={css.galleryItemImage}
-            src={el.largeImageURL}
-            alt={el.tags}
+            src={largeImageURL}
+            alt={tags}
           />
-        ))}
       </li>
     );
-  } else {
-    return null;
-  }
 };
 
 export default ImageGalleryItem;
