@@ -20,11 +20,10 @@ class App extends Component {
   };
 
   onLoadMore = () => {
-    this.setState(({ images, page }) => ({
-      images: [...images, ...images.hits],
+    this.setState(({ page }) => ({
       page: page + 1,
     }));
-  }
+  };
 
   render() {
     const { images, page } = this.state; 
@@ -41,7 +40,7 @@ class App extends Component {
       >
         <Searchbar onSubmit={this.onSubmit} /> 
         <ImageGallery images={images} page={page}/>
-        {images.length !== 0 && <Button onLoadMore={this.onLoadMore}/>}
+        {images.length !== 0 && <Button onClick={this.onLoadMore}/>}
       </div>
     );
   }
