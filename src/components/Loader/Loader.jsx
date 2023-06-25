@@ -1,10 +1,22 @@
 import { Component } from 'react';
-import css from './ImageGalleryItem.module.css';
+import { Oval } from 'react-loader-spinner';
 
 class Loader extends Component {
+ 
   render() {
     return (
-      <div></div>
+      <Oval
+        height={100}
+        width={100}
+        color="#4fa94d"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="oval-loading"
+        secondaryColor="#4fa94d"
+        strokeWidth={2}
+        strokeWidthSecondary={2}
+      />
     );
   }
 }

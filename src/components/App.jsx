@@ -3,20 +3,24 @@ import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import getImages from './api/getImages';
 import Button from './Button/Button';
+import Loader from './Loader/Loader';
 
 class App extends Component {
   state = {
     images: [],
     page: 1,
-    isLoading:false,
+    isLoading: false,
+    query: '',
   };
 
-  onSubmit = async (query) => {
+  onSubmit = async query => {
+    this.setState({ isLoading: true });
     try {
       const images = await getImages(query);
-      this.setState({ images });
+      this.setState({ images, isLoading: false });
     } catch (error) {
       console.error('Error fetching images:', error);
+      this.setState({ isLoading: false });
     }
   };
 
@@ -27,7 +31,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, page } = this.state; 
+    const { images, page, isLoading } = this.state;
 
     return (
       <div
@@ -39,9 +43,15 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Searchbar onSubmit={this.onSubmit} /> 
-        <ImageGallery images={images} page={page}/>
-        {images.length !== 0 && <Button onClick={this.onLoadMore}/>}
+        <Searchbar onSubmit={this.onSubmit} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <ImageGallery images={images} page={page} />
+            {images.length !== 0 && <Button onClick={this.onLoadMore} />}
+          </>
+        )}
       </div>
     );
   }
