@@ -6,7 +6,7 @@ const ImageGallery = ({ images }) => {
   console.log(images.hits);
   if (images.hits) {
     const elements = images.hits.map(el => (
-      <ImageGalleryItem key={el.id} url={el.largeImageURL} tags={el.tags} image={el} />
+      <ImageGalleryItem key={el.id} url={el.webformatURL} tags={el.tags} image={el} />
     ));
 
     return <ul className={css.gallery}>{elements}</ul>;
