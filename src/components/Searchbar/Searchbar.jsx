@@ -22,8 +22,8 @@ class Searchbar extends Component {
             type="text"
             placeholder="Search images..."
             name="search"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             className={css.input}
           />
           <button className={css.button} type="submit">
