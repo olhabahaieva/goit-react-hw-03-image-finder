@@ -21,7 +21,7 @@ class App extends Component {
 
   onLoadMore = () => {
     this.setState(({ images, page }) => ({
-      images: [...images, images.hits],
+      images: [...images, ...images.hits],
       page: page + 1,
     }));
   }
