@@ -8,6 +8,7 @@ class App extends Component {
   state = {
     images: [],
     page: 1,
+    isLoading:false,
   };
 
   onSubmit = async (query) => {
