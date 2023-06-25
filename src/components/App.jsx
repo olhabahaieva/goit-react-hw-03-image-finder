@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import getImages from './api/getImages';
-
+import Button from './Button/Button';
 
 class App extends Component {
   state = {
@@ -33,7 +33,8 @@ class App extends Component {
         }}
       >
         <Searchbar onSubmit={this.onSubmit} /> 
-        <ImageGallery images={images} page={page}/> 
+        <ImageGallery images={images} page={page}/>
+        {images.length !== 0 && <Button/>}
       </div>
     );
   }
