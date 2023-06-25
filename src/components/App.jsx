@@ -41,7 +41,7 @@ class App extends Component {
       >
         <Searchbar onSubmit={this.onSubmit} /> 
         <ImageGallery images={images} page={page}/>
-        {images.length !== 0 && <Button onClick={this.onLoadMore}/>}
+        {images.length !== 0 && <Button onLoadMore={this.onLoadMore}/>}
       </div>
     );
   }
