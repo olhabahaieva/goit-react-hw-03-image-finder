@@ -2,10 +2,10 @@ import React from 'react';
 import css from './ImageGallery.module.css';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, openModal }) => {
   if (images.hits) {
     const elements = images.hits.map(el => (
-      <ImageGalleryItem key={el.id} url={el.webformatURL} tags={el.tags} />
+      <ImageGalleryItem onClick={openModal} key={el.id} url={el.webformatURL} tags={el.tags} bigImage={el.largeImageURL}/>
     ));
 
     return <ul className={css.gallery}>{elements}</ul>;

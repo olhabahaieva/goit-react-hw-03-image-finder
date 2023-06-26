@@ -32,6 +32,12 @@ class App extends Component {
     }));
   };
 
+  openModal = () =>{
+    this.setState(() => ({
+      largeImageURL: this.largeImageURL,
+    }));
+  }
+
   render() {
     const { images, page, isLoading, largeImageURL } = this.state;
 
@@ -50,11 +56,11 @@ class App extends Component {
           <Loader />
         ) : (
           <>
-            <ImageGallery images={images} page={page} />
+            <ImageGallery images={images} page={page} onClick={this.openModal}/>
             {images.length !== 0 && <Button onClick={this.onLoadMore} />}
           </>
         )}
-        {largeImageURL === true && <Modal images={images}/>}
+        {largeImageURL !== null && <Modal largeImageURL={largeImageURL}/>}
       </div>
     );
   }
