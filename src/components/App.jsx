@@ -70,7 +70,7 @@ class App extends Component {
           <Loader />
         ) : (
           <>
-            <ImageGallery images={images} page={page} onClick={this.openModal}/>
+            <ImageGallery images={images} page={page} openModal={this.openModal}/>
             {images.length !== 0 && <Button onClick={this.onLoadMore} />}
           </>
         )}

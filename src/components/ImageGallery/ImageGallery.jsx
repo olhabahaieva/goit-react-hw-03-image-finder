@@ -5,7 +5,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 const ImageGallery = ({ images, openModal }) => {
   if (images.hits) {
     const elements = images.hits.map(el => (
-      <ImageGalleryItem onClick={openModal} key={el.id} url={el.webformatURL} tags={el.tags} bigImage={el.largeImageURL}/>
+      <ImageGalleryItem onClick={() => openModal(el.largeImageURL)} key={el.id} url={el.webformatURL} tags={el.tags} bigImage={el.largeImageURL}/>
     ));
 
     return <ul className={css.gallery}>{elements}</ul>;
