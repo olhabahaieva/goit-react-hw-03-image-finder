@@ -54,7 +54,7 @@ class App extends Component {
             {images.length !== 0 && <Button onClick={this.onLoadMore} />}
           </>
         )}
-        {largeImageURL === true && <Modal/>}
+        {largeImageURL === true && <Modal images={images}/>}
       </div>
     );
   }
