@@ -15,19 +15,18 @@ class App extends Component {
     largeImageURL: null,
   };
 
-  componentDidMount() {
-    const savedState = this.largeImageURL;
-    this.setState(savedState)
-  }
+  // componentDidMount() {
+  //   // const savedState = this.largeImageURL; // Remove this line, as it's not needed
+  //   // this.setState(savedState); // Remove this line, as it's not needed
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(prevState.largeImageURL !== this.state.largeImageURL){
-      this.setState({
-        largeImageURL: this.largeImageURL
-      })
-    }
-  }
-
+  // componentDidUpdate(prevProps, prevState) {
+  //   // if(prevState.largeImageURL !== this.state.largeImageURL){
+  //   //   this.setState({
+  //   //     largeImageURL: this.largeImageURL, // Change this line to use the correct state variable
+  //   //   })
+  //   // }
+  // }
 
   onSubmit = async query => {
     this.setState({ isLoading: true });
@@ -46,14 +45,18 @@ class App extends Component {
     }));
   };
 
-  openModal = () =>{
-    this.setState(() => ({
-      largeImageURL: this.largeImageURL,
-    }));
-  }
+  openModal = largeImageURL => { 
+    this.setState({
+      largeImageURL: largeImageURL, 
+    });
+  };
+
+  closeModal = () => {
+    this.setState({ largeImageURL: null });
+  };
 
   render() {
-    const { images, page, isLoading, largeImageURL } = this.state;
+    const { images, page, isLoading, largeImageURL, tags } = this.state;
 
     return (
       <div
@@ -70,11 +73,11 @@ class App extends Component {
           <Loader />
         ) : (
           <>
-            <ImageGallery images={images} page={page} openModal={this.openModal}/>
+            <ImageGallery images={images} page={page} openModal={this.openModal} />
             {images.length !== 0 && <Button onClick={this.onLoadMore} />}
           </>
         )}
-        {largeImageURL !== null && <Modal largeImageURL={largeImageURL}/>}
+        {largeImageURL !== null && <Modal largeImageURL={largeImageURL} tags={tags} closeModal={this.closeModal} />}
       </div>
     );
   }
