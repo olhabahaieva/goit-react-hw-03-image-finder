@@ -4,6 +4,7 @@ import ImageGallery from './ImageGallery';
 import getImages from './api/getImages';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
+import Modal from './Modal/Modal';
 
 class App extends Component {
   state = {
@@ -11,6 +12,7 @@ class App extends Component {
     page: 1,
     isLoading: false,
     query: '',
+    largeImageURL: null,
   };
 
   onSubmit = async query => {
@@ -31,7 +33,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, page, isLoading } = this.state;
+    const { images, page, isLoading, largeImageURL } = this.state;
 
     return (
       <div
@@ -52,6 +54,7 @@ class App extends Component {
             {images.length !== 0 && <Button onClick={this.onLoadMore} />}
           </>
         )}
+        {largeImageURL === true && <Modal/>}
       </div>
     );
   }
