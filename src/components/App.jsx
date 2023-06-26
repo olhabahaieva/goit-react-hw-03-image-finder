@@ -15,6 +15,20 @@ class App extends Component {
     largeImageURL: null,
   };
 
+  componentDidMount() {
+    const savedState = this.largeImageURL;
+    this.setState(savedState)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.largeImageURL !== this.state.largeImageURL){
+      this.setState({
+        largeImageURL: this.largeImageURL
+      })
+    }
+  }
+
+
   onSubmit = async query => {
     this.setState({ isLoading: true });
     try {
