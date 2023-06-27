@@ -70,7 +70,7 @@ class App extends Component {
         ) : (
           <>
             <ImageGallery images={images} page={page} openModal={this.openModal} />
-            {images.length !== 0 && <Button onClick={this.onLoadMore} />}
+            {images.length !== 0 && <Button onLoadMore={this.onLoadMore} />}
           </>
         )}
         {largeImageURL !== null && <Modal largeImageURL={largeImageURL} tags={tags} closeModal={this.closeModal} />}
