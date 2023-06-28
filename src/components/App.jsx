@@ -37,7 +37,7 @@ class App extends Component {
 
   onLoadMore = () => {
     this.setState(({ page }) => ({
-      page: page + 1,
+      page: this.state.page + 1
     }));
   };
 
