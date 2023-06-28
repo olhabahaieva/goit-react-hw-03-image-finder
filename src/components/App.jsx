@@ -20,9 +20,8 @@ class App extends Component {
       images: this.state.images,
     }));
   }
-  
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     const prevQuery = prevState.query;
     const nextQuery = this.state.query;
     const { page } = this.state;
@@ -42,15 +41,25 @@ class App extends Component {
     }
   };
 
-  onLoadMore = () => {
-    this.setState(({ page }) => ({
-      page: this.state.page + 1
-    }));
+  onLoadMore = async () => {
+    this.setState({ isLoading: true });
+    try {
+      const { query, page } = this.state;
+      const newImages = await getImages(query, page + 1);
+      this.setState(prevState => ({
+        images: [prevState.images, newImages],
+        page: prevState.page + 1,
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.error('Error loading more images:', error);
+      this.setState({ isLoading: false });
+    }
   };
 
-  openModal = largeImageURL => { 
+  openModal = largeImageURL => {
     this.setState({
-      largeImageURL: largeImageURL, 
+      largeImageURL: largeImageURL,
     });
   };
 
@@ -76,11 +85,21 @@ class App extends Component {
           <Loader />
         ) : (
           <>
-            <ImageGallery images={images} page={page} openModal={this.openModal} />
+            <ImageGallery
+              images={images}
+              page={page}
+              openModal={this.openModal}
+            />
             {images.length !== 0 && <Button onLoadMore={this.onLoadMore} />}
           </>
         )}
-        {largeImageURL !== null && <Modal largeImageURL={largeImageURL} tags={tags} closeModal={this.closeModal} />}
+        {largeImageURL !== null && (
+          <Modal
+            largeImageURL={largeImageURL}
+            tags={tags}
+            closeModal={this.closeModal}
+          />
+        )}
       </div>
     );
   }
