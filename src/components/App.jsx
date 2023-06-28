@@ -15,12 +15,19 @@ class App extends Component {
     largeImageURL: null,
   };
 
+  componentDidMount() {
+    this.setState(() => ({
+      images: this.state.images,
+    }));
+  }
+  
+
   componentDidUpdate(prevProps, prevState){
     const prevQuery = prevState.query;
     const nextQuery = this.state.query;
     const { page } = this.state;
     if (prevQuery !== nextQuery || (prevState.page !== page && page !== 1)) {
-      this.getImages();
+      this.onSubmit(prevProps);
     }
   }
 
