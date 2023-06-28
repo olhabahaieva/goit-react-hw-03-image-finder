@@ -15,46 +15,35 @@ class App extends Component {
     largeImageURL: null,
   };
 
-  componentDidMount() {
-    this.setState(() => ({
-      images: this.state.images,
-    }));
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const prevQuery = prevState.query;
-    const nextQuery = this.state.query;
-    const { page } = this.state;
-    if (prevQuery !== nextQuery || (prevState.page !== page && page !== 1)) {
-      this.onSubmit(prevProps);
-    }
-  }
-
-  onSubmit = async query => {
-    this.setState({ isLoading: true });
+  fetchPhotoByName = async query => {
     try {
-      const images = await getImages(query);
-      this.setState({ images, isLoading: false });
-    } catch (error) {
-      console.error('Error fetching images:', error);
+      this.setState({ isLoading: true });
+      const photoByName = await getImages(query, this.state.page);
+      this.setState(prevState => ({
+        images: [...prevState.images, ...photoByName.hits],
+      }));
+    } catch (err) {
+      console.log('error', err.message);
+    } finally {
       this.setState({ isLoading: false });
     }
   };
 
-  onLoadMore = async () => {
-    this.setState({ isLoading: true });
-    try {
-      const { query, page } = this.state;
-      const newImages = await getImages(query, page + 1);
-      this.setState(prevState => ({
-        images: [prevState.images, newImages],
-        page: prevState.page + 1,
-        isLoading: false,
-      }));
-    } catch (error) {
-      console.error('Error loading more images:', error);
-      this.setState({ isLoading: false });
+  onSubmit = async query => {
+    this.setState({ query: query, images: [], page: 1 });
+  };
+
+  componentDidUpdate(_, prevState) {
+    if (
+      prevState.query !== this.state.query ||
+      prevState.page !== this.state.page
+    ) {
+      this.fetchPhotoByName(this.state.query);
     }
+  }
+
+  onLoadMore = async () => {
+    this.setState({ page: this.state.page + 1 });
   };
 
   openModal = largeImageURL => {
