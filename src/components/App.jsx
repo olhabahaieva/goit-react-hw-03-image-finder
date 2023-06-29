@@ -43,7 +43,9 @@ class App extends Component {
   }
 
   onLoadMore = async () => {
-    this.setState({ page: this.state.page + 1 });
+    this.setState({ 
+      page: this.state.page + 1, 
+    });
   };
 
   openModal = largeImageURL => {
@@ -79,7 +81,10 @@ class App extends Component {
               page={page}
               openModal={this.openModal}
             />
-            {images.length !== 0 && <Button onLoadMore={this.onLoadMore} />}
+            {images.length > 0 && images.length >= 12 && (
+              <Button onLoadMore={this.onLoadMore}/>
+            )}
+            
           </>
         )}
         {largeImageURL !== null && (
